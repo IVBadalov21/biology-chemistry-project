@@ -4,3 +4,4 @@
 #include <string>
 #include <cmath>
 #include <SFML/Graphics.hpp>
+#include "Game.hpp"
