@@ -3,5 +3,7 @@
 #include <vector>
 #include <string>
 #include <cmath>
+#include <map>
 #include <SFML/Graphics.hpp>
 #include "Game.hpp"
+#include "Trash.hpp"

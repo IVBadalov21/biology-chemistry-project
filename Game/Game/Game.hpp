@@ -2,7 +2,11 @@
 class Game {
 public:
 	Game();
-	void displayWindow(sf::Vector2i position);
+	void displayWindow();
+	void update();
+	void processKeyPressed();
 private:
 	sf::RenderWindow window;
+	sf::Event event;
+	std::map<int, sf::Texture> trashTextures;
 };
