@@ -132,9 +132,11 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Background.cpp" />
     <ClCompile Include="Trash.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Background.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="Precompile.hpp" />
     <ClInclude Include="Trash.hpp" />
