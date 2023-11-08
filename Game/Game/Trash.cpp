@@ -14,3 +14,8 @@ void Trash::setTexture(sf::Texture& texture)
 {
 	this->trashSprite.setTexture(texture);
 }
+
+void Trash::setValue(int value)
+{
+	this->value = value;
+}
