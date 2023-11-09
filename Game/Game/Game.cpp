@@ -6,7 +6,7 @@ Game::Game()
 {
     this->window.create(sf::VideoMode(1280, 720), "Game");
     this->window.setFramerateLimit(60);
-    this->garbageRespawnCooldown = sf::seconds(5.00f);
+    this->garbageCooldown = 300;
 
     this->blueTrashBinTexture.loadFromFile("../Assets/sin_kosh.png");
     this->yellowTrashBinTexture.loadFromFile("../Assets/jult_kosh.png");
@@ -15,6 +15,7 @@ Game::Game()
     this->cardboardTexture.loadFromFile("../Assets/box.png");
     this->plasticTexture.loadFromFile("../Assets/plastic.png");
     this->backgroundTexture.loadFromFile("../Assets/background.png");
+    this->font.loadFromFile("../Assets/Agbalumo-Regular.ttf");
 
     this->trashBinTextures = {
         {1, this->blueTrashBinTexture},
@@ -28,6 +29,11 @@ Game::Game()
         {3, this->glassTexture}
     };
 
+    this->cooldownText.setFont(font);
+    this->cooldownText.setFillColor(sf::Color::White);
+    this->cooldownText.setCharacterSize(120);
+    this->cooldownText.setPosition(sf::Vector2f(580, 240));
+
     this->blueTrashBin.setTexture(this->trashBinTextures[1]);
     this->blueTrashBin.setPosition(sf::Vector2f(340, 480));
     this->blueTrashBin.setValue(1);
@@ -40,17 +46,11 @@ Game::Game()
     this->greenTrashBin.setPosition(sf::Vector2f(820, 480));
     this->greenTrashBin.setValue(3);
 
-    this->garbageValue = getRandomGarbage();
-
-    this->garbage.setTexture(this->garbageTextures[this->garbageValue]);
-    this->garbage.setPosition(sf::Vector2f(580, 300));
-    this->garbage.setValue(this->garbageValue);
-    this->garbage.setStatus(false);
-
     this->background.setTexture(this->backgroundTexture);
     this->background.setSize();
 
-    garbageShouldDraw = true;
+    this->garbageShouldDraw = true;
+    this->garbage.setValue(getRandomGarbage());
 
     update();
 }
@@ -59,8 +59,10 @@ void Game::displayWindow()
 {
     this->window.clear();
     this->background.draw(this->window);
-    if(garbageShouldDraw)
+    if (this->garbageShouldDraw)
         this->garbage.draw(this->window);
+    else
+        this->window.draw(this->cooldownText);
     this->blueTrashBin.draw(this->window);
     this->yellowTrashBin.draw(this->window);
     this->greenTrashBin.draw(this->window);
@@ -86,8 +88,11 @@ void Game::update()
             //    }
             //}
         }
+        this->cooldownText.setString(std::to_string(garbageCounter / 60)+"s");
         displayWindow();
         garbageLogic();
+        this->garbageCounter++;
+
     }
 }
 
@@ -102,40 +107,61 @@ int Game::getRandomGarbage()
 void Game::garbageLogic()
 {
 
-    if ((sf::Mouse::getPosition().x > 580 && sf::Mouse::getPosition().x < 700 && sf::Mouse::getPosition().y > 300 && sf::Mouse::getPosition().y < 420) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    if ((sf::Mouse::getPosition(this->window).x > 580 && sf::Mouse::getPosition(this->window).x < 700 && sf::Mouse::getPosition(this->window).y > 300 && sf::Mouse::getPosition(this->window).y < 420) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
         this->isGarbageFollowingMouse = true;
     }
 
     if (this->isGarbageFollowingMouse)
     {
-        garbage.setPosition(sf::Vector2f(sf::Mouse::getPosition().x - 60, sf::Mouse::getPosition().y - 60));
+        garbage.setPosition(sf::Vector2f(sf::Mouse::getPosition(this->window).x - 60, sf::Mouse::getPosition(this->window).y - 60));
     }
 
-    //switch (this->garbageValue)
-    //{
-    //    case 1: 
-
-    //    case 2:
-
-    //    case 3:
-
-    //}
+    switch (this->garbageValue)
+    {
+        case 1: 
+            if ((sf::Mouse::getPosition(this->window).x > 340 && sf::Mouse::getPosition(this->window).x < 460 && sf::Mouse::getPosition(this->window).y >480 && sf::Mouse::getPosition(this->window).y < 600) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+            {
+                this->garbageShouldDraw = false;
+                this->isClockAlreadyRestarted = false;
+                this->garbage.setStatus(true);
+                this->isGarbageFollowingMouse = false;
+            }
+            break;
+        case 2:
+            if ((sf::Mouse::getPosition(this->window).x > 580 && sf::Mouse::getPosition(this->window).x < 700 && sf::Mouse::getPosition(this->window).y >480 && sf::Mouse::getPosition(this->window).y < 600) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+            {
+                this->garbageShouldDraw = false;
+                this->isClockAlreadyRestarted = false;
+                this->garbage.setStatus(true);
+                this->isGarbageFollowingMouse = false;
+            }
+            break;
+        case 3:
+            if ((sf::Mouse::getPosition(this->window).x > 820 && sf::Mouse::getPosition(this->window).x < 1000 && sf::Mouse::getPosition(this->window).y >480 && sf::Mouse::getPosition(this->window).y < 600) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+            {
+                this->garbageShouldDraw = false;
+                this->isClockAlreadyRestarted = false;
+                this->garbage.setStatus(true);
+                this->isGarbageFollowingMouse = false;
+            }
+            break;
+    }
 
     if (this->garbage.getStatus())
     {
-        this->isAlreadyChanged = false;
         if (!this->isClockAlreadyRestarted)
         {
-            this->clock.restart();
+            garbageCounter = 0;
+            isClockAlreadyRestarted = true;
         }
-        this->elapsedTime = clock.getElapsedTime();
     }
 
-    if (garbage.getStatus() && this->elapsedTime == this->garbageRespawnCooldown)
+    if (this->garbage.getStatus() && this->garbageCounter == this->garbageCooldown)
     {
         this->garbage.setStatus(false);
         this->garbageShouldDraw = true;
+        this->isAlreadyChanged = false;
     }
 
     if (!this->garbage.getStatus() && !this->isAlreadyChanged)
@@ -144,7 +170,6 @@ void Game::garbageLogic()
         this->garbage.setTexture(this->garbageTextures[garbageValue]);
         garbage.setPosition(sf::Vector2f(580, 300));
         garbage.setValue(garbageValue);
-        garbage.setStatus(false);
         this->isAlreadyChanged = true;
     }
 }

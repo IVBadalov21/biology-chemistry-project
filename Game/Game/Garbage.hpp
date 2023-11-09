@@ -12,6 +12,6 @@ public:
 
 private:
 	sf::Sprite sprite;
-	int value;
-	bool isCollected;
+	int value = 0;
+	bool isCollected = false;
 };

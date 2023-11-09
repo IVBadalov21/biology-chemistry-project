@@ -16,9 +16,6 @@ private:
 
 	sf::RenderWindow window;
 	sf::Event event;
-	sf::Time garbageRespawnCooldown;
-	sf::Time elapsedTime;
-	sf::Clock clock;
 	std::map<int, sf::Texture> trashBinTextures;
 	std::map<int, sf::Texture> garbageTextures;
 	sf::Texture blueTrashBinTexture;
@@ -28,12 +25,16 @@ private:
 	sf::Texture glassTexture;
 	sf::Texture cardboardTexture;
 	sf::Texture plasticTexture;
+	sf::Font font;
+	sf::Text cooldownText;
 	Trash blueTrashBin;
 	Trash yellowTrashBin;
 	Trash greenTrashBin;
 	Garbage garbage;
 	Background background;
 	int garbageValue;
+	int garbageCooldown;
+	int garbageCounter;
 	bool isAlreadyChanged;
 	bool isClockAlreadyRestarted;
 	bool isGarbageFollowingMouse;
