@@ -14,7 +14,9 @@ Game::Game()
     this->glassTexture.loadFromFile("../Assets/glass.png");
     this->cardboardTexture.loadFromFile("../Assets/box.png");
     this->plasticTexture.loadFromFile("../Assets/plastic.png");
-    this->backgroundTexture.loadFromFile("../Assets/background.png");
+    this->backgroundTexture1.loadFromFile("../Assets/background.png");
+    this->backgroundTexture2.loadFromFile("../Assets/background_flowers.png");
+    this->backgroundTexture3.loadFromFile("../Assets/background_three.png");
     this->font.loadFromFile("../Assets/Agbalumo-Regular.ttf");
 
     this->trashBinTextures = {
@@ -29,10 +31,21 @@ Game::Game()
         {3, this->glassTexture}
     };
 
-    this->cooldownText.setFont(font);
+    this->backgroundTextures = {
+        {1, this->backgroundTexture1},
+        {2, this->backgroundTexture2},
+        {3, this->backgroundTexture3}
+    };
+
+    this->cooldownText.setFont(this->font);
     this->cooldownText.setFillColor(sf::Color::White);
     this->cooldownText.setCharacterSize(120);
     this->cooldownText.setPosition(sf::Vector2f(580, 240));
+
+    this->moneyText.setFont(this->font);
+    this->moneyText.setFillColor(sf::Color::White);
+    this->moneyText.setCharacterSize(32);
+    this->moneyText.setPosition(sf::Vector2f(1000,150));
 
     this->blueTrashBin.setTexture(this->trashBinTextures[1]);
     this->blueTrashBin.setPosition(sf::Vector2f(340, 480));
@@ -46,7 +59,7 @@ Game::Game()
     this->greenTrashBin.setPosition(sf::Vector2f(820, 480));
     this->greenTrashBin.setValue(3);
 
-    this->background.setTexture(this->backgroundTexture);
+    this->background.setTexture(this->backgroundTextures[1]);
     this->background.setSize();
 
     this->garbageShouldDraw = true;
@@ -63,6 +76,8 @@ void Game::displayWindow()
         this->garbage.draw(this->window);
     else
         this->window.draw(this->cooldownText);
+    this->window.draw(this->moneyText);
+
     this->blueTrashBin.draw(this->window);
     this->yellowTrashBin.draw(this->window);
     this->greenTrashBin.draw(this->window);
@@ -80,27 +95,24 @@ void Game::update()
             {
                 this->window.close();
             }
-            //else
-            //{
-            //    if (this->event.type == sf::Event::KeyPressed)
-            //    {
-            //        processKeyPressed();
-            //    }
-            //}
+            else
+            {
+                if (this->event.type == sf::Event::KeyPressed)
+                {
+                    processKeyPressed();
+                }
+            }
         }
-        this->cooldownText.setString(std::to_string(garbageCounter / 60)+"s");
+        handleText();
         displayWindow();
         garbageLogic();
-        this->garbageCounter++;
-
     }
 }
 
 int Game::getRandomGarbage()
 {
-    std::default_random_engine generator;
+    std::random_device generator;
     std::uniform_int_distribution<int> garbageValueGen(1, 3);
-
     return garbageValueGen(generator);
 }
 
@@ -120,30 +132,33 @@ void Game::garbageLogic()
     switch (this->garbageValue)
     {
         case 1: 
-            if ((sf::Mouse::getPosition(this->window).x > 340 && sf::Mouse::getPosition(this->window).x < 460 && sf::Mouse::getPosition(this->window).y >480 && sf::Mouse::getPosition(this->window).y < 600) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+            if ((sf::Mouse::getPosition(this->window).x > 340 && sf::Mouse::getPosition(this->window).x < 460 && sf::Mouse::getPosition(this->window).y >480 && sf::Mouse::getPosition(this->window).y < 600) && sf::Mouse::isButtonPressed(sf::Mouse::Left) && this->isGarbageFollowingMouse)
             {
                 this->garbageShouldDraw = false;
                 this->isClockAlreadyRestarted = false;
                 this->garbage.setStatus(true);
                 this->isGarbageFollowingMouse = false;
+                this->money.setValue(money.moneyIncrease);
             }
             break;
         case 2:
-            if ((sf::Mouse::getPosition(this->window).x > 580 && sf::Mouse::getPosition(this->window).x < 700 && sf::Mouse::getPosition(this->window).y >480 && sf::Mouse::getPosition(this->window).y < 600) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+            if ((sf::Mouse::getPosition(this->window).x > 580 && sf::Mouse::getPosition(this->window).x < 700 && sf::Mouse::getPosition(this->window).y >480 && sf::Mouse::getPosition(this->window).y < 600) && sf::Mouse::isButtonPressed(sf::Mouse::Left) && this->isGarbageFollowingMouse)
             {
                 this->garbageShouldDraw = false;
                 this->isClockAlreadyRestarted = false;
                 this->garbage.setStatus(true);
                 this->isGarbageFollowingMouse = false;
+                this->money.setValue(money.moneyIncrease);
             }
             break;
         case 3:
-            if ((sf::Mouse::getPosition(this->window).x > 820 && sf::Mouse::getPosition(this->window).x < 1000 && sf::Mouse::getPosition(this->window).y >480 && sf::Mouse::getPosition(this->window).y < 600) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+            if ((sf::Mouse::getPosition(this->window).x > 820 && sf::Mouse::getPosition(this->window).x < 1000 && sf::Mouse::getPosition(this->window).y >480 && sf::Mouse::getPosition(this->window).y < 600) && sf::Mouse::isButtonPressed(sf::Mouse::Left) && this->isGarbageFollowingMouse)
             {
                 this->garbageShouldDraw = false;
                 this->isClockAlreadyRestarted = false;
                 this->garbage.setStatus(true);
                 this->isGarbageFollowingMouse = false;
+                this->money.setValue(money.moneyIncrease);
             }
             break;
     }
@@ -152,12 +167,12 @@ void Game::garbageLogic()
     {
         if (!this->isClockAlreadyRestarted)
         {
-            garbageCounter = 0;
+            garbageCounter = garbageCooldown;
             isClockAlreadyRestarted = true;
         }
     }
 
-    if (this->garbage.getStatus() && this->garbageCounter == this->garbageCooldown)
+    if (this->garbage.getStatus() && this->garbageCounter == 0)
     {
         this->garbage.setStatus(false);
         this->garbageShouldDraw = true;
@@ -174,10 +189,69 @@ void Game::garbageLogic()
     }
 }
 
-//void Game::processKeyPressed()
-//{
-//    if (this->event.key.code == sf::Keyboard::Num1)
-//    {
-//        if(this->)
-//    }
-//}
+void Game::processKeyPressed()
+{
+    if (this->event.key.code == sf::Keyboard::Num1)
+    {
+        if (money.getValue() > this->money.cost1)
+        {
+            upgrade1();
+        }
+    }
+    if (this->event.key.code == sf::Keyboard::Num2)
+    {
+        if (money.getValue() > this->money.cost2)
+        {
+            upgrade2();
+        }
+    }
+    if (this->event.key.code == sf::Keyboard::Num3)
+    {
+        if (money.getValue() > this->money.cost3)
+        {
+            upgrade3();
+        }
+    }
+}
+
+void Game::upgrade1()
+{
+    this->money.setValue(-this->money.cost1);
+    this->money.upgrade1Level++;
+    this->money.setCost1(money.cost1 * 0.1 * money.upgrade1Level);
+    this->money.moneyIncrease += 5;
+}
+
+void Game::upgrade2()
+{
+    this->money.setValue(-this->money.cost2);
+    this->money.upgrade2Level++;
+    this->money.setCost2(money.cost2 * 0.1 * money.upgrade2Level);
+    this->garbageCooldown -= 50;
+}
+
+void Game::upgrade3()
+{
+    this->money.setValue(-this->money.cost3);
+    this->money.upgrade3Level++;
+    this->money.setCost3(money.cost3 * 0.1 * money.upgrade3Level);
+    if (this->money.upgrade3Level = 1)
+        this->background.setTexture(backgroundTextures[2]);
+    if (this->money.upgrade3Level = 2)
+        this->background.setTexture(backgroundTextures[3]);
+}
+
+void Game::handleText()
+{
+    //if (this->shouldMainMenuDisplay)
+    //{
+
+    //}
+    //else
+    //{
+        this->cooldownText.setString(std::to_string(std::floor((garbageCounter / 60) + 1)) + "s");
+        this->garbageCounter--;
+
+        this->moneyText.setString(std::to_string(this->money.getValue()));
+    //}
+}

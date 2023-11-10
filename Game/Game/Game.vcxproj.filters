@@ -30,6 +30,9 @@
     <ClCompile Include="Garbage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Money.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Precompile.hpp">
@@ -45,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Garbage.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Money.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
