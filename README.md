@@ -34,6 +34,6 @@
 <h1>📋 Documents</h1>
 <p>
 <h2> <a href ="SOON" >📜 Documentation</h2>
-<h2> <a href = "SOON">🔍 QA Tests</h2>
-<h2> <a href ="SOON" >📰 Presentation</h2>
+<h2> <a href ="/Documentation/QA_kroasancheta.xlsx">🔍 QA Tests</h2>
+<h2> <a href ="/Documentation/presentation.pptx" >📰 Presentation</h2>
 </p>
