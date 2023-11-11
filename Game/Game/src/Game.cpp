@@ -4,10 +4,11 @@
 
 Game::Game()
 {
+    //Create window and set the framerate
     this->window.create(sf::VideoMode(1280, 720), "Game"/*, sf::Style::Fullscreen*/);
     this->window.setFramerateLimit(60);
     this->garbageCooldown = 300;
-
+    //Load game textures
     this->buttonOneTexture.loadFromFile("../Assets/one_button.png");
     this->buttonTwoTexture.loadFromFile("../Assets/two_button.png");
     this->buttonThreeTexture.loadFromFile("../Assets/three_button.png");
@@ -41,15 +42,15 @@ Game::Game()
         //{2, this->backgroundTexture2},
         //{3, this->backgroundTexture3}
     };
-
+    //Set the texture of the main menu
     this->mainMenu.setTexture(this->mainMenuTexture);
     this->mainMenu.setButtons();
-
+    //Set the cooldown text
     this->cooldownText.setFont(this->font);
     this->cooldownText.setFillColor(sf::Color::White);
     this->cooldownText.setCharacterSize(120);
     this->cooldownText.setPosition(sf::Vector2f(580, 240));
-
+    //Set textures of miscellanious elements
     this->misc[0].setTexture(moneyTexture);
     this->misc[0].setPosition(sf::Vector2f(960, 160));
 
@@ -97,48 +98,48 @@ Game::Game()
     this->misc[12].setTexture(buttonThreeTexture);
     this->misc[12].setPosition(sf::Vector2f(900, 410));
     this->misc[12].setScale(0.25f);
-
+    //Set the money text
     this->moneyText.setFont(this->font);
     this->moneyText.setFillColor(sf::Color::White);
     this->moneyText.setCharacterSize(32);
     this->moneyText.setPosition(sf::Vector2f(1000,150));
-
+    //Set text for upgrade 1
     this->upgrade1Text.setFont(this->font);
     this->upgrade1Text.setFillColor(sf::Color::White);
     this->upgrade1Text.setCharacterSize(32);
     this->upgrade1Text.setPosition(sf::Vector2f(940, 300));
-
+    //Set text for upgrade 2
     this->upgrade2Text.setFont(this->font);
     this->upgrade2Text.setFillColor(sf::Color::White);
     this->upgrade2Text.setCharacterSize(32);
     this->upgrade2Text.setPosition(sf::Vector2f(940, 350));
-
+    //Set text for upgrade 3
     this->upgrade3Text.setFont(this->font);
     this->upgrade3Text.setFillColor(sf::Color::White);
     this->upgrade3Text.setCharacterSize(32);
     this->upgrade3Text.setPosition(sf::Vector2f(940, 400));
-
+    //Set blue trash bin texture
     this->blueTrashBin.setTexture(this->trashBinTextures[1]);
     this->blueTrashBin.setPosition(sf::Vector2f(340, 480));
     this->blueTrashBin.setValue(1);
-
+    //Set yellow trash bin texture
     this->yellowTrashBin.setTexture(this->trashBinTextures[2]);
     this->yellowTrashBin.setPosition(sf::Vector2f(580, 480));
     this->yellowTrashBin.setValue(2);
-
+    //Set green trash bin texture
     this->greenTrashBin.setTexture(this->trashBinTextures[3]);
     this->greenTrashBin.setPosition(sf::Vector2f(820, 480));
     this->greenTrashBin.setValue(3);
-
+    //Set background texture
     this->background.setTexture(this->backgroundTextures[1]);
     this->background.setSize();
-
+    //Spawn initial garbage
     this->garbageShouldDraw = true;
     this->garbage.setValue(getRandomGarbage());
 
     update();
 }
-
+//Display ythings on the window
 void Game::displayWindow()
 {
     this->window.clear();
@@ -176,7 +177,7 @@ void Game::displayWindow()
 
     this->window.display();
 }
-
+//Handle program runtime
 void Game::update()
 {
     while (this->window.isOpen())
@@ -209,17 +210,17 @@ void Game::update()
 
     }
 }
-
+//Load random garbage
 int Game::getRandomGarbage()
 {
     std::random_device generator;
     std::uniform_int_distribution<int> garbageValueGen(1, 3);
     return garbageValueGen(generator);
 }
-
+//Handle garbage pickup, spawn, despawn and money increase
 void Game::garbageLogic()
 {
-
+    //Start garbage movement
     if ((sf::Mouse::getPosition(this->window).x > 580 && sf::Mouse::getPosition(this->window).x < 700 && sf::Mouse::getPosition(this->window).y > 300 && sf::Mouse::getPosition(this->window).y < 420) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
         this->isGarbageFollowingMouse = true;
@@ -229,9 +230,10 @@ void Game::garbageLogic()
     {
         garbage.setPosition(sf::Vector2f(sf::Mouse::getPosition(this->window).x - 60.f, sf::Mouse::getPosition(this->window).y - 60.f));
     }
-
+    //Check for garbage to trash bin
     switch (this->garbageValue)
     {
+        //Check for garbage on the blue bin
         case 1: 
             if ((sf::Mouse::getPosition(this->window).x > 340 && sf::Mouse::getPosition(this->window).x < 460 && sf::Mouse::getPosition(this->window).y >480 && sf::Mouse::getPosition(this->window).y < 600) && sf::Mouse::isButtonPressed(sf::Mouse::Left) && this->isGarbageFollowingMouse)
             {
@@ -242,6 +244,7 @@ void Game::garbageLogic()
                 this->money.setValue(money.moneyIncrease);
             }
             break;
+        //Check for garbage on the yellow bin
         case 2:
             if ((sf::Mouse::getPosition(this->window).x > 580 && sf::Mouse::getPosition(this->window).x < 700 && sf::Mouse::getPosition(this->window).y >480 && sf::Mouse::getPosition(this->window).y < 600) && sf::Mouse::isButtonPressed(sf::Mouse::Left) && this->isGarbageFollowingMouse)
             {
@@ -252,6 +255,7 @@ void Game::garbageLogic()
                 this->money.setValue(money.moneyIncrease);
             }
             break;
+        //Check for garbage on green bin
         case 3:
             if ((sf::Mouse::getPosition(this->window).x > 820 && sf::Mouse::getPosition(this->window).x < 1000 && sf::Mouse::getPosition(this->window).y >480 && sf::Mouse::getPosition(this->window).y < 600) && sf::Mouse::isButtonPressed(sf::Mouse::Left) && this->isGarbageFollowingMouse)
             {
@@ -263,7 +267,7 @@ void Game::garbageLogic()
             }
             break;
     }
-
+    //Set garbage status
     if (this->garbage.getStatus())
     {
         if (!this->isClockAlreadyRestarted)
@@ -272,14 +276,14 @@ void Game::garbageLogic()
             isClockAlreadyRestarted = true;
         }
     }
-
+    //Allow garbage to respawn
     if (this->garbage.getStatus() && this->garbageCounter == 0)
     {
         this->garbage.setStatus(false);
         this->garbageShouldDraw = true;
         this->isAlreadyChanged = false;
     }
-
+    //Set garbage properties for respawn
     if (!this->garbage.getStatus() && !this->isAlreadyChanged)
     {
         this->garbageValue = getRandomGarbage();
@@ -289,7 +293,7 @@ void Game::garbageLogic()
         this->isAlreadyChanged = true;
     }
 }
-
+//Process pressing of keys
 void Game::processKeyPressed()
 {
     if (this->event.key.code == sf::Keyboard::Num1)
@@ -318,7 +322,7 @@ void Game::processKeyPressed()
         this->shouldMainMenuDisplay = true;
     }
 }
-
+//Handling of the first upgrade
 void Game::upgrade1()
 {
     this->money.setValue(-this->money.cost1);
@@ -326,7 +330,7 @@ void Game::upgrade1()
     this->money.setCost1(money.cost1 * (1 + (0.1f * money.upgrade1Level)));
     this->money.moneyIncrease += 2;
 }
-
+//Handling of the second upgrade 
 void Game::upgrade2()
 {
     this->money.setValue(-this->money.cost2);
@@ -334,7 +338,7 @@ void Game::upgrade2()
     this->money.setCost2(money.cost2 * (1 + (0.1f * money.upgrade2Level)));
     this->garbageCooldown -= 50;
 }
-
+//Handling of the third upgrade
 void Game::upgrade3()
 {
     this->money.setValue(-this->money.cost3);
@@ -345,7 +349,7 @@ void Game::upgrade3()
     if (this->money.upgrade3Level = 2)
         this->background.setTexture(backgroundTextures[3]);
 }
-
+//Handling of text updates
 void Game::handleText()
 {
         this->cooldownText.setString(std::to_string((garbageCounter / 60) + 1) + "s");
