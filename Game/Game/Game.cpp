@@ -15,8 +15,8 @@ Game::Game()
     this->cardboardTexture.loadFromFile("../Assets/box.png");
     this->plasticTexture.loadFromFile("../Assets/plastic.png");
     this->backgroundTexture1.loadFromFile("../Assets/background.png");
-    this->backgroundTexture2.loadFromFile("../Assets/background_flowers.png");
-    this->backgroundTexture3.loadFromFile("../Assets/background_three.png");
+   // this->backgroundTexture2.loadFromFile("../Assets/background_flowers.png");
+   // this->backgroundTexture3.loadFromFile("../Assets/background_three.png");
     this->font.loadFromFile("../Assets/Agbalumo-Regular.ttf");
 
     this->trashBinTextures = {
@@ -38,12 +38,12 @@ Game::Game()
     };
 
     this->cooldownText.setFont(this->font);
-    this->cooldownText.setFillColor(sf::Color::White);
+    this->cooldownText.setFillColor(sf::Color::Blue);
     this->cooldownText.setCharacterSize(120);
     this->cooldownText.setPosition(sf::Vector2f(580, 240));
 
     this->moneyText.setFont(this->font);
-    this->moneyText.setFillColor(sf::Color::White);
+    this->moneyText.setFillColor(sf::Color::Red);
     this->moneyText.setCharacterSize(32);
     this->moneyText.setPosition(sf::Vector2f(1000,150));
 
