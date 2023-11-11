@@ -1,5 +1,5 @@
-#include "Precompile.hpp"
-#include "Background.hpp"
+#include "../lib/Precompile.hpp"
+#include "../lib/Background.hpp"
 
 void Background::setTexture(sf::Texture& texture)
 {

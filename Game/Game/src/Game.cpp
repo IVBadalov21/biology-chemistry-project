@@ -1,6 +1,6 @@
-#include "Precompile.hpp"
-#include "Trash.hpp"
-#include "Game.hpp"
+#include "../lib/Precompile.hpp"
+#include "../lib/Trash.hpp"
+#include "../lib/Game.hpp"
 
 Game::Game()
 {

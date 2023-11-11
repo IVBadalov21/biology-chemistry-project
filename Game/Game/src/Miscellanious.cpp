@@ -1,5 +1,5 @@
-#include "Precompile.hpp"
-#include "Miscellanious.hpp"
+#include "../lib/Precompile.hpp"
+#include "../lib/Miscellanious.hpp"
 
 void Misc::setTexture(sf::Texture& texture)
 {

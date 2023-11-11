@@ -1,5 +1,5 @@
-#include "Precompile.hpp"
-#include "Garbage.hpp"
+#include "../lib/Precompile.hpp"
+#include "../lib/Garbage.hpp"
 
 void Garbage::setTexture(sf::Texture& texture)
 {

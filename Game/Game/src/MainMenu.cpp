@@ -1,5 +1,5 @@
-#include "Precompile.hpp"
-#include "MainMenu.hpp"
+#include "../lib/Precompile.hpp"
+#include "../lib/MainMenu.hpp"
 
 void MainMenu::setTexture(sf::Texture& texture)
 {

@@ -15,54 +15,54 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
+    <ClCompile Include="src\Background.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
+    <ClCompile Include="src\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Trash.cpp">
+    <ClCompile Include="src\Garbage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Background.cpp">
+    <ClCompile Include="src\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Garbage.cpp">
+    <ClCompile Include="src\MainMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Money.cpp">
+    <ClCompile Include="src\Miscellanious.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MainMenu.cpp">
+    <ClCompile Include="src\Money.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Miscellanious.cpp">
+    <ClCompile Include="src\Trash.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Precompile.hpp">
+    <ClInclude Include="lib\Background.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game.hpp">
+    <ClInclude Include="lib\Game.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Trash.hpp">
+    <ClInclude Include="lib\Garbage.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Background.hpp">
+    <ClInclude Include="lib\MainMenu.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Garbage.hpp">
+    <ClInclude Include="lib\Miscellanious.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Money.hpp">
+    <ClInclude Include="lib\Money.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MainMenu.hpp">
+    <ClInclude Include="lib\Precompile.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Miscellanious.hpp">
+    <ClInclude Include="lib\Trash.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,5 +1,6 @@
-#include "Precompile.hpp"
-#include "Trash.hpp"
+#include "../lib/Precompile.hpp"
+#include "../lib/Trash.hpp"
+
 void Trash::draw(sf::RenderWindow& window)
 {
 	window.draw(this->trashSprite);

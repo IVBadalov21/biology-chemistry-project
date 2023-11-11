@@ -1,5 +1,5 @@
-#include "Precompile.hpp"
-#include "Money.hpp"
+#include "../lib/Precompile.hpp"
+#include "../lib/Money.hpp"
 
 void Money::setTexture(sf::Texture& texture)
 {
