@@ -134,6 +134,8 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Background.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Miscellanious.cpp" />
     <ClCompile Include="Money.cpp" />
     <ClCompile Include="Trash.cpp" />
   </ItemGroup>
@@ -141,6 +143,8 @@
     <ClInclude Include="Background.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="Garbage.hpp" />
+    <ClInclude Include="Miscellanious.hpp" />
+    <ClInclude Include="MainMenu.hpp" />
     <ClInclude Include="Money.hpp" />
     <ClInclude Include="Precompile.hpp" />
     <ClInclude Include="Trash.hpp" />

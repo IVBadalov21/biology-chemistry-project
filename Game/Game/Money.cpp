@@ -18,23 +18,23 @@ void Money::setValue(float change)
 
 int Money::getValue()
 {
-	return this->value;
+	return static_cast<int>(this->value);
 }
 
 void Money::setCost1(float change)
 {
-	this->cost1 += change * this->upgrade1Level;
+	this->cost1 = change;
 	upgrade1Level++;
 }
 
 void Money::setCost2(float change)
 {
-	this->cost2 += change * this->upgrade2Level;
+	this->cost2 = change;
 	upgrade2Level++;
 }
 
 void Money::setCost3(float change)
 {
-	this->cost3 += change * this->upgrade3Level;
+	this->cost3 = change;
 	upgrade3Level++;
 }
