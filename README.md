@@ -2,12 +2,13 @@
 <img src = "Game/Assets/logo.png" alt = "logo">
 <br>
 <h1>📄 Description </h1>
-  Kroasancheta is our team made up of 
+  Kroasancheta is our team made up of 4 members. Our goal is to make a game that teaches children about ecology and the importance of it. 
 <h1>🧑‍🤝‍🧑 Our Team </h1>
 <p>
+
 1. **Ivo Badalov** - **Scrum trainer**	
-> ***GitHub profile***: [***IVBadalov21***](https://github.com/IVBadalov21)	
- 
+> ***GitHub profile***: [***IVBadalov21***](https://github.com/IVBadalov21)
+
 2. **Simeon Syarov** - **Backend Developer** 
 > ***GitHub profile***: [***SMSyarov21***](https://github.com/SMSyarov21)	
  
