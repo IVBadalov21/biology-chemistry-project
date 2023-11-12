@@ -3,17 +3,17 @@
 //Set texture of miscellanious elements 
 void Misc::setTexture(sf::Texture& texture)
 {
-	this->sprite.setTexture(texture);
+	sprite.setTexture(texture);
 }
 //Set position of miscellanious elements 
 void Misc::setPosition(sf::Vector2f position)
 {
-	this->sprite.setPosition(position);
+	sprite.setPosition(position);
 }
 //Draw miscellanious elements 
 void Misc::draw(sf::RenderWindow& window)
 {
-	window.draw(this->sprite);
+	window.draw(sprite);
 }
 //Set size of miscellanious elements 
 void Misc::setScale(float scale = 1)

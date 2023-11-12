@@ -5,220 +5,220 @@
 Game::Game()
 {
 	//Create window and set the framerate
-	this->window.create(sf::VideoMode(1280, 720), "Game"/*, sf::Style::Fullscreen*/);
-	this->window.setFramerateLimit(60);
-	this->garbageCooldown = 300;
+	window.create(sf::VideoMode(1280, 720), "Game"/*, sf::Style::Fullscreen*/);
+	window.setFramerateLimit(60);
+	garbageCooldown = 300;
 	//Load game textures
-	this->buttonOneTexture.loadFromFile("../Assets/one_button.png");
-	this->buttonTwoTexture.loadFromFile("../Assets/two_button.png");
-	this->buttonThreeTexture.loadFromFile("../Assets/three_button.png");
-	this->moneyTexture.loadFromFile("../Assets/coins.png");
-	this->startTexture.loadFromFile("../Assets/start_button.png");
-	this->quitTexture.loadFromFile("../Assets/exiting_button.png");
-	this->mainMenuTexture.loadFromFile("../Assets/cloud_back.png");
-	this->blueTrashBinTexture.loadFromFile("../Assets/sin_kosh.png");
-	this->yellowTrashBinTexture.loadFromFile("../Assets/jult_kosh.png");
-	this->greenTrashBinTexture.loadFromFile("../Assets/zelen_kosh.png");
-	this->glassTexture.loadFromFile("../Assets/glass.png");
-	this->cardboardTexture.loadFromFile("../Assets/box.png");
-	this->plasticTexture.loadFromFile("../Assets/plastic.png");
-	this->backgroundTexture1.loadFromFile("../Assets/background.png");
-	this->backgroundTexture2.loadFromFile("../Assets/background_cloud.png");
-	this->backgroundTexture3.loadFromFile("../Assets/background_three.png");
-	this->backgroundTexture4.loadFromFile("../Assets/background_flowers.png");
-	this->finishScreenTexture.loadFromFile("../Assets/cloud_back.png");
-	this->font.loadFromFile("../Assets/Agbalumo-Regular.ttf");
+	buttonOneTexture.loadFromFile("../Assets/one_button.png");
+	buttonTwoTexture.loadFromFile("../Assets/two_button.png");
+	buttonThreeTexture.loadFromFile("../Assets/three_button.png");
+	moneyTexture.loadFromFile("../Assets/coins.png");
+	startTexture.loadFromFile("../Assets/start_button.png");
+	quitTexture.loadFromFile("../Assets/exiting_button.png");
+	mainMenuTexture.loadFromFile("../Assets/cloud_back.png");
+	blueTrashBinTexture.loadFromFile("../Assets/sin_kosh.png");
+	yellowTrashBinTexture.loadFromFile("../Assets/jult_kosh.png");
+	greenTrashBinTexture.loadFromFile("../Assets/zelen_kosh.png");
+	glassTexture.loadFromFile("../Assets/glass.png");
+	cardboardTexture.loadFromFile("../Assets/box.png");
+	plasticTexture.loadFromFile("../Assets/plastic.png");
+	backgroundTexture1.loadFromFile("../Assets/background.png");
+	backgroundTexture2.loadFromFile("../Assets/background_cloud.png");
+	backgroundTexture3.loadFromFile("../Assets/background_three.png");
+	backgroundTexture4.loadFromFile("../Assets/background_flowers.png");
+	finishScreenTexture.loadFromFile("../Assets/cloud_back.png");
+	font.loadFromFile("../Assets/Agbalumo-Regular.ttf");
 
-	this->trashBinTextures = {
-		{1, this->blueTrashBinTexture},
-		{2, this->yellowTrashBinTexture},
-		{3, this->greenTrashBinTexture}
+	trashBinTextures = {
+		{1, blueTrashBinTexture},
+		{2, yellowTrashBinTexture},
+		{3, greenTrashBinTexture}
 	};
 
-	this->garbageTextures = {
-		{1, this->cardboardTexture},
-		{2, this->plasticTexture},
-		{3, this->glassTexture}
+	garbageTextures = {
+		{1, cardboardTexture},
+		{2, plasticTexture},
+		{3, glassTexture}
 	};
 
-	this->backgroundTextures = {
-		{1, this->backgroundTexture1},
-		{2, this->backgroundTexture2},
-		{3, this->backgroundTexture3},
-		{4, this->backgroundTexture4}
+	backgroundTextures = {
+		{1, backgroundTexture1},
+		{2, backgroundTexture2},
+		{3, backgroundTexture3},
+		{4, backgroundTexture4}
 	};
 	//Set the texture of the main menu
-	this->mainMenu.setTexture(this->mainMenuTexture);
-	this->mainMenu.setButtons(startTexture, quitTexture);
+	mainMenu.setTexture(mainMenuTexture);
+	mainMenu.setButtons(startTexture, quitTexture);
 	//Set the cooldown text
-	this->cooldownText.setFont(this->font);
-	this->cooldownText.setFillColor(sf::Color::White);
-	this->cooldownText.setCharacterSize(120);
-	this->cooldownText.setPosition(sf::Vector2f(580, 240));
+	cooldownText.setFont(font);
+	cooldownText.setFillColor(sf::Color::White);
+	cooldownText.setCharacterSize(120);
+	cooldownText.setPosition(sf::Vector2f(580, 240));
 	//Set textures of miscellanious elements
-	this->misc[0].setTexture(moneyTexture);
-	this->misc[0].setPosition(sf::Vector2f(960, 160));
+	misc[0].setTexture(moneyTexture);
+	misc[0].setPosition(sf::Vector2f(960, 160));
 
-	this->misc[1].setTexture(blueTrashBinTexture);
-	this->misc[1].setPosition(sf::Vector2f(20, 140));
-	this->misc[1].setScale(0.5f);
+	misc[1].setTexture(blueTrashBinTexture);
+	misc[1].setPosition(sf::Vector2f(20, 140));
+	misc[1].setScale(0.5f);
 
-	this->misc[2].setTexture(yellowTrashBinTexture);
-	this->misc[2].setPosition(sf::Vector2f(20, 220));
-	this->misc[2].setScale(0.5f);
+	misc[2].setTexture(yellowTrashBinTexture);
+	misc[2].setPosition(sf::Vector2f(20, 220));
+	misc[2].setScale(0.5f);
 
-	this->misc[3].setTexture(greenTrashBinTexture);
-	this->misc[3].setPosition(sf::Vector2f(20, 300));
-	this->misc[3].setScale(0.5f);
+	misc[3].setTexture(greenTrashBinTexture);
+	misc[3].setPosition(sf::Vector2f(20, 300));
+	misc[3].setScale(0.5f);
 
-	this->misc[4].setTexture(cardboardTexture);
-	this->misc[4].setPosition(sf::Vector2f(80, 140));
-	this->misc[4].setScale(0.5f);
+	misc[4].setTexture(cardboardTexture);
+	misc[4].setPosition(sf::Vector2f(80, 140));
+	misc[4].setScale(0.5f);
 
-	this->misc[5].setTexture(plasticTexture);
-	this->misc[5].setPosition(sf::Vector2f(80, 220));
-	this->misc[5].setScale(0.5f);
+	misc[5].setTexture(plasticTexture);
+	misc[5].setPosition(sf::Vector2f(80, 220));
+	misc[5].setScale(0.5f);
 
-	this->misc[6].setTexture(glassTexture);
-	this->misc[6].setPosition(sf::Vector2f(80, 300));
-	this->misc[6].setScale(0.5f);
+	misc[6].setTexture(glassTexture);
+	misc[6].setPosition(sf::Vector2f(80, 300));
+	misc[6].setScale(0.5f);
 
-	this->misc[7].setTexture(moneyTexture);
-	this->misc[7].setPosition(sf::Vector2f(1160, 310));
+	misc[7].setTexture(moneyTexture);
+	misc[7].setPosition(sf::Vector2f(1160, 310));
 
-	this->misc[8].setTexture(moneyTexture);
-	this->misc[8].setPosition(sf::Vector2f(1160, 360));
+	misc[8].setTexture(moneyTexture);
+	misc[8].setPosition(sf::Vector2f(1160, 360));
 
-	this->misc[9].setTexture(moneyTexture);
-	this->misc[9].setPosition(sf::Vector2f(1140, 410));
+	misc[9].setTexture(moneyTexture);
+	misc[9].setPosition(sf::Vector2f(1140, 410));
 
-	this->misc[10].setTexture(buttonOneTexture);
-	this->misc[10].setPosition(sf::Vector2f(850, 310));
-	this->misc[10].setScale(0.25f);
+	misc[10].setTexture(buttonOneTexture);
+	misc[10].setPosition(sf::Vector2f(850, 310));
+	misc[10].setScale(0.25f);
 
-	this->misc[11].setTexture(buttonTwoTexture);
-	this->misc[11].setPosition(sf::Vector2f(850, 360));
-	this->misc[11].setScale(0.25f);
+	misc[11].setTexture(buttonTwoTexture);
+	misc[11].setPosition(sf::Vector2f(850, 360));
+	misc[11].setScale(0.25f);
 
-	this->misc[12].setTexture(buttonThreeTexture);
-	this->misc[12].setPosition(sf::Vector2f(850, 410));
-	this->misc[12].setScale(0.25f);
+	misc[12].setTexture(buttonThreeTexture);
+	misc[12].setPosition(sf::Vector2f(850, 410));
+	misc[12].setScale(0.25f);
 	//Set the money text
-	this->moneyText.setFont(this->font);
-	this->moneyText.setFillColor(sf::Color::White);
-	this->moneyText.setCharacterSize(32);
-	this->moneyText.setPosition(sf::Vector2f(1000, 150));
+	moneyText.setFont(font);
+	moneyText.setFillColor(sf::Color::White);
+	moneyText.setCharacterSize(32);
+	moneyText.setPosition(sf::Vector2f(1000, 150));
 	//Set text for upgrade 1
-	this->upgrade1Text.setFont(this->font);
-	this->upgrade1Text.setFillColor(sf::Color::White);
-	this->upgrade1Text.setCharacterSize(32);
-	this->upgrade1Text.setPosition(sf::Vector2f(890, 300));
+	upgrade1Text.setFont(font);
+	upgrade1Text.setFillColor(sf::Color::White);
+	upgrade1Text.setCharacterSize(32);
+	upgrade1Text.setPosition(sf::Vector2f(890, 300));
 	//Set text for upgrade 2
-	this->upgrade2Text.setFont(this->font);
-	this->upgrade2Text.setFillColor(sf::Color::White);
-	this->upgrade2Text.setCharacterSize(32);
-	this->upgrade2Text.setPosition(sf::Vector2f(890, 350));
+	upgrade2Text.setFont(font);
+	upgrade2Text.setFillColor(sf::Color::White);
+	upgrade2Text.setCharacterSize(32);
+	upgrade2Text.setPosition(sf::Vector2f(890, 350));
 	//Set text for upgrade 3
-	this->upgrade3Text.setFont(this->font);
-	this->upgrade3Text.setFillColor(sf::Color::White);
-	this->upgrade3Text.setCharacterSize(32);
-	this->upgrade3Text.setPosition(sf::Vector2f(890, 400));
+	upgrade3Text.setFont(font);
+	upgrade3Text.setFillColor(sf::Color::White);
+	upgrade3Text.setCharacterSize(32);
+	upgrade3Text.setPosition(sf::Vector2f(890, 400));
 	//Set first text of finish screen
-	this->finishScreenText1.setFont(this->font);
-	this->finishScreenText1.setFillColor(sf::Color::White);
-	this->finishScreenText1.setCharacterSize(60);
-	this->finishScreenText1.setPosition(sf::Vector2f(120, 400));
-	this->finishScreenText1.setString("Congratilations, you finished the game");
+	finishScreenText1.setFont(font);
+	finishScreenText1.setFillColor(sf::Color::White);
+	finishScreenText1.setCharacterSize(60);
+	finishScreenText1.setPosition(sf::Vector2f(120, 400));
+	finishScreenText1.setString("Congratilations, you finished the game");
 	//Set second text of finish screen
-	this->finishScreenText2.setFont(this->font);
-	this->finishScreenText2.setFillColor(sf::Color::White);
-	this->finishScreenText2.setCharacterSize(60);
-	this->finishScreenText2.setPosition(sf::Vector2f(300, 600));
-	this->finishScreenText2.setString("Press Esc to close the game");
+	finishScreenText2.setFont(font);
+	finishScreenText2.setFillColor(sf::Color::White);
+	finishScreenText2.setCharacterSize(60);
+	finishScreenText2.setPosition(sf::Vector2f(300, 600));
+	finishScreenText2.setString("Press Esc to close the game");
 	//Set blue trash bin texture
-	this->blueTrashBin.setTexture(this->trashBinTextures[1]);
-	this->blueTrashBin.setPosition(sf::Vector2f(340, 480));
-	this->blueTrashBin.setValue(1);
+	blueTrashBin.setTexture(trashBinTextures[1]);
+	blueTrashBin.setPosition(sf::Vector2f(340, 480));
+	blueTrashBin.setValue(1);
 	//Set yellow trash bin texture
-	this->yellowTrashBin.setTexture(this->trashBinTextures[2]);
-	this->yellowTrashBin.setPosition(sf::Vector2f(580, 480));
-	this->yellowTrashBin.setValue(2);
+	yellowTrashBin.setTexture(trashBinTextures[2]);
+	yellowTrashBin.setPosition(sf::Vector2f(580, 480));
+	yellowTrashBin.setValue(2);
 	//Set green trash bin texture
-	this->greenTrashBin.setTexture(this->trashBinTextures[3]);
-	this->greenTrashBin.setPosition(sf::Vector2f(820, 480));
-	this->greenTrashBin.setValue(3);
+	greenTrashBin.setTexture(trashBinTextures[3]);
+	greenTrashBin.setPosition(sf::Vector2f(820, 480));
+	greenTrashBin.setValue(3);
 	//Set background texture
-	this->background.setTexture(this->backgroundTextures[1]);
-	this->background.setSize();
+	background.setTexture(backgroundTextures[1]);
+	background.setSize();
 
-	this->finishScreen.setTexture(finishScreenTexture);
+	finishScreen.setTexture(finishScreenTexture);
 	//Spawn initial garbage
-	this->garbageShouldDraw = true;
-	this->garbage.setValue(getRandomGarbage());
+	garbageShouldDraw = true;
+	garbage.setValue(getRandomGarbage());
 
 	update();
 }
 //Display ythings on the window
 void Game::displayWindow()
 {
-	this->window.clear();
+	window.clear();
 
-	this->background.draw(this->window);
+	background.draw(window);
 
-	this->blueTrashBin.draw(this->window);
-	this->yellowTrashBin.draw(this->window);
-	this->greenTrashBin.draw(this->window);
+	blueTrashBin.draw(window);
+	yellowTrashBin.draw(window);
+	greenTrashBin.draw(window);
 
-	if (this->garbageShouldDraw)
-		this->garbage.draw(this->window);
+	if (garbageShouldDraw)
+		garbage.draw(window);
 	else
-		this->window.draw(this->cooldownText);
+		window.draw(cooldownText);
 
-	this->misc[0].draw(this->window);
-	this->window.draw(this->moneyText);
+	misc[0].draw(window);
+	window.draw(moneyText);
 
-	this->misc[1].draw(this->window);
-	this->misc[2].draw(this->window);
-	this->misc[3].draw(this->window);
-	this->misc[4].draw(this->window);
-	this->misc[5].draw(this->window);
-	this->misc[6].draw(this->window);
-	this->misc[7].draw(this->window);
-	this->misc[8].draw(this->window);
-	this->misc[9].draw(this->window);
-	this->misc[10].draw(this->window);
-	this->misc[11].draw(this->window);
-	this->misc[12].draw(this->window);
+	misc[1].draw(window);
+	misc[2].draw(window);
+	misc[3].draw(window);
+	misc[4].draw(window);
+	misc[5].draw(window);
+	misc[6].draw(window);
+	misc[7].draw(window);
+	misc[8].draw(window);
+	misc[9].draw(window);
+	misc[10].draw(window);
+	misc[11].draw(window);
+	misc[12].draw(window);
 
-	window.draw(this->upgrade1Text);
-	window.draw(this->upgrade2Text);
-	window.draw(this->upgrade3Text);
+	window.draw(upgrade1Text);
+	window.draw(upgrade2Text);
+	window.draw(upgrade3Text);
 
-	this->window.display();
+	window.display();
 }
 //Handle program runtime
 void Game::update()
 {
-	while (this->window.isOpen())
+	while (window.isOpen())
 	{
-		while (this->window.pollEvent(this->event))
+		while (window.pollEvent(event))
 		{
-			if (this->event.type == sf::Event::Closed || this->shouldWindowClose)
+			if (event.type == sf::Event::Closed || shouldWindowClose)
 			{
-				this->window.close();
+				window.close();
 			}
 			else
 			{
-				if (this->event.type == sf::Event::KeyPressed && !this->shouldMainMenuDisplay)
+				if (event.type == sf::Event::KeyPressed && !shouldMainMenuDisplay)
 				{
 					processKeyPressed();
 				}
 			}
 		}
-		if (this->shouldMainMenuDisplay)
+		if (shouldMainMenuDisplay)
 		{
-			this->mainMenu.handleButtons(this->window, this->shouldWindowClose, this->shouldMainMenuDisplay);
-			this->mainMenu.draw(this->window);
+			mainMenu.handleButtons(window, shouldWindowClose, shouldMainMenuDisplay);
+			mainMenu.draw(window);
 		}
 		else
 		{
@@ -247,103 +247,103 @@ int Game::getRandomGarbage()
 void Game::garbageLogic()
 {
 	//Start garbage movement
-	if ((sf::Mouse::getPosition(this->window).x > 580 && sf::Mouse::getPosition(this->window).x < 700 && sf::Mouse::getPosition(this->window).y > 300 && sf::Mouse::getPosition(this->window).y < 420) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	if ((sf::Mouse::getPosition(window).x > 580 && sf::Mouse::getPosition(window).x < 700 && sf::Mouse::getPosition(window).y > 300 && sf::Mouse::getPosition(window).y < 420) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
-		this->isGarbageFollowingMouse = true;
+		isGarbageFollowingMouse = true;
 	}
 
-	if (this->isGarbageFollowingMouse)
+	if (isGarbageFollowingMouse)
 	{
-		garbage.setPosition(sf::Vector2f(sf::Mouse::getPosition(this->window).x - 60.f, sf::Mouse::getPosition(this->window).y - 60.f));
+		garbage.setPosition(sf::Vector2f(sf::Mouse::getPosition(window).x - 60.f, sf::Mouse::getPosition(window).y - 60.f));
 	}
 	//Check for garbage to trash bin
-	switch (this->garbageValue)
+	switch (garbageValue)
 	{
 		//Check for garbage on the blue bin
 	case 1:
-		if ((sf::Mouse::getPosition(this->window).x > 340 && sf::Mouse::getPosition(this->window).x < 460 && sf::Mouse::getPosition(this->window).y >480 && sf::Mouse::getPosition(this->window).y < 600) && sf::Mouse::isButtonPressed(sf::Mouse::Left) && this->isGarbageFollowingMouse)
+		if ((sf::Mouse::getPosition(window).x > 340 && sf::Mouse::getPosition(window).x < 460 && sf::Mouse::getPosition(window).y >480 && sf::Mouse::getPosition(window).y < 600) && sf::Mouse::isButtonPressed(sf::Mouse::Left) && isGarbageFollowingMouse)
 		{
-			this->garbageShouldDraw = false;
-			this->isClockAlreadyRestarted = false;
-			this->garbage.setStatus(true);
-			this->isGarbageFollowingMouse = false;
-			this->money.setValue(money.moneyIncrease);
+			garbageShouldDraw = false;
+			isClockAlreadyRestarted = false;
+			garbage.setStatus(true);
+			isGarbageFollowingMouse = false;
+			money.setValue(money.moneyIncrease);
 		}
 		break;
 		//Check for garbage on the yellow bin
 	case 2:
-		if ((sf::Mouse::getPosition(this->window).x > 580 && sf::Mouse::getPosition(this->window).x < 700 && sf::Mouse::getPosition(this->window).y >480 && sf::Mouse::getPosition(this->window).y < 600) && sf::Mouse::isButtonPressed(sf::Mouse::Left) && this->isGarbageFollowingMouse)
+		if ((sf::Mouse::getPosition(window).x > 580 && sf::Mouse::getPosition(window).x < 700 && sf::Mouse::getPosition(window).y >480 && sf::Mouse::getPosition(window).y < 600) && sf::Mouse::isButtonPressed(sf::Mouse::Left) && isGarbageFollowingMouse)
 		{
-			this->garbageShouldDraw = false;
-			this->isClockAlreadyRestarted = false;
-			this->garbage.setStatus(true);
-			this->isGarbageFollowingMouse = false;
-			this->money.setValue(money.moneyIncrease);
+			garbageShouldDraw = false;
+			isClockAlreadyRestarted = false;
+			garbage.setStatus(true);
+			isGarbageFollowingMouse = false;
+			money.setValue(money.moneyIncrease);
 		}
 		break;
 		//Check for garbage on green bin
 	case 3:
-		if ((sf::Mouse::getPosition(this->window).x > 820 && sf::Mouse::getPosition(this->window).x < 1000 && sf::Mouse::getPosition(this->window).y >480 && sf::Mouse::getPosition(this->window).y < 600) && sf::Mouse::isButtonPressed(sf::Mouse::Left) && this->isGarbageFollowingMouse)
+		if ((sf::Mouse::getPosition(window).x > 820 && sf::Mouse::getPosition(window).x < 1000 && sf::Mouse::getPosition(window).y >480 && sf::Mouse::getPosition(window).y < 600) && sf::Mouse::isButtonPressed(sf::Mouse::Left) && isGarbageFollowingMouse)
 		{
-			this->garbageShouldDraw = false;
-			this->isClockAlreadyRestarted = false;
-			this->garbage.setStatus(true);
-			this->isGarbageFollowingMouse = false;
-			this->money.setValue(money.moneyIncrease);
+			garbageShouldDraw = false;
+			isClockAlreadyRestarted = false;
+			garbage.setStatus(true);
+			isGarbageFollowingMouse = false;
+			money.setValue(money.moneyIncrease);
 		}
 		break;
 	}
 	//Set garbage status
-	if (this->garbage.getStatus())
+	if (garbage.getStatus())
 	{
-		if (!this->isClockAlreadyRestarted)
+		if (!isClockAlreadyRestarted)
 		{
 			garbageCounter = garbageCooldown;
 			isClockAlreadyRestarted = true;
 		}
 	}
 	//Allow garbage to respawn
-	if (this->garbage.getStatus() && this->garbageCounter == 0)
+	if (garbage.getStatus() && garbageCounter == 0)
 	{
-		this->garbage.setStatus(false);
-		this->garbageShouldDraw = true;
-		this->isAlreadyChanged = false;
+		garbage.setStatus(false);
+		garbageShouldDraw = true;
+		isAlreadyChanged = false;
 	}
 	//Set garbage properties for respawn
-	if (!this->garbage.getStatus() && !this->isAlreadyChanged)
+	if (!garbage.getStatus() && !isAlreadyChanged)
 	{
-		this->garbageValue = getRandomGarbage();
-		this->garbage.setTexture(this->garbageTextures[garbageValue]);
+		garbageValue = getRandomGarbage();
+		garbage.setTexture(garbageTextures[garbageValue]);
 		garbage.setPosition(sf::Vector2f(580, 300));
 		garbage.setValue(garbageValue);
-		this->isAlreadyChanged = true;
+		isAlreadyChanged = true;
 	}
 }
 //Process pressing of keys
 void Game::processKeyPressed()
 {
-	if (this->event.key.code == sf::Keyboard::Num1)
+	if (event.key.code == sf::Keyboard::Num1)
 	{
-		if (money.getValue() >= this->money.cost1)
+		if (money.getValue() >= money.cost1)
 		{
 			upgrade1();
 		}
 	}
-	if (this->event.key.code == sf::Keyboard::Num2)
+	if (event.key.code == sf::Keyboard::Num2)
 	{
-		if (money.getValue() >= this->money.cost2)
+		if (money.getValue() >= money.cost2)
 		{
 			upgrade2();
 		}
 	}
-	if (this->event.key.code == sf::Keyboard::Num3)
+	if (event.key.code == sf::Keyboard::Num3)
 	{
-		if (money.getValue() >= this->money.cost3)
+		if (money.getValue() >= money.cost3)
 		{
 			upgrade3();
 		}
 	}
-	if (this->event.key.code == sf::Keyboard::Escape)
+	if (event.key.code == sf::Keyboard::Escape)
 	{
 		if (shouldFinishScreenDisplay)
 		{
@@ -351,51 +351,54 @@ void Game::processKeyPressed()
 		}
 		else
 		{
-			this->shouldMainMenuDisplay = true;
+			shouldMainMenuDisplay = true;
 		}
 	}
 }
 //Handling of the first upgrade
 void Game::upgrade1()
 {
-	this->money.setValue(-this->money.cost1);
-	this->money.upgrade1Level++;
-	this->money.setCost1(money.cost1 * (1 + (0.1f * money.upgrade1Level)));
-	this->money.moneyIncrease += 2;
+	money.setValue(-money.cost1);
+	money.upgrade1Level++;
+	money.setCost1(money.cost1 * (1 + (0.1f * money.upgrade1Level)));
+	money.moneyIncrease += 20;
 }
 //Handling of the second upgrade 
 void Game::upgrade2()
 {
-	this->money.setValue(-this->money.cost2);
-	this->money.upgrade2Level++;
-	this->money.setCost2(money.cost2 * (1 + (0.1f * money.upgrade2Level)));
-	this->garbageCooldown -= 50;
+	money.setValue(-money.cost2);
+	money.upgrade2Level++;
+	money.setCost2(money.cost2 * (1 + (0.1f * money.upgrade2Level)));
+	garbageCooldown -= 60;
+	if (garbageCooldown < 0) {
+		garbageCooldown = 0;
+	}
 }
 //Handling of the third upgrade
 void Game::upgrade3()
 {
-	this->money.setValue(-this->money.cost3);
-	this->money.upgrade3Level++;
-	this->money.setCost3(money.cost3 * money.upgrade3Level);
-	if (this->money.upgrade3Level == 2)
-		this->background.setTexture(backgroundTextures[2]);
-	if (this->money.upgrade3Level == 3)
-		this->background.setTexture(backgroundTextures[3]);
-	if (this->money.upgrade3Level == 4)
-		this->background.setTexture(backgroundTextures[4]);
+	money.setValue(-money.cost3);
+	money.upgrade3Level++;
+	money.setCost3(100 * money.upgrade3Level);
+	if (money.upgrade3Level == 2)
+		background.setTexture(backgroundTextures[2]);
+	if (money.upgrade3Level == 3)
+		background.setTexture(backgroundTextures[3]);
+	if (money.upgrade3Level == 4)
+		background.setTexture(backgroundTextures[4]);
 	if (money.upgrade3Level > 4)
 		shouldFinishScreenDisplay = true;
 }
 //Handling of text updates
 void Game::handleText()
 {
-	this->cooldownText.setString(std::to_string((garbageCounter / 60) + 1) + "s");
-	this->garbageCounter--;
-	this->moneyText.setString(std::to_string(this->money.getValue()));
+	cooldownText.setString(std::to_string((garbageCounter / 60) + 1) + "s");
+	garbageCounter--;
+	moneyText.setString(std::to_string(money.getValue()));
 
-	this->upgrade1Text.setString("Upgrade income:         " + std::to_string((int)this->money.cost1));
-	this->upgrade2Text.setString("Reduce cooldown:      " + std::to_string((int)this->money.cost2));
-	this->upgrade3Text.setString("Buy next stage:           " + std::to_string((int)this->money.cost3));
+	upgrade1Text.setString("Upgrade income:         " + std::to_string((int)money.cost1));
+	upgrade2Text.setString("Reduce cooldown:      " + std::to_string((int)money.cost2));
+	upgrade3Text.setString("Buy next stage:           " + std::to_string((int)money.cost3));
 }
 
 void Game::displayFinishWindow()

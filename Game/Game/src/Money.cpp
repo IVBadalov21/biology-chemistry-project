@@ -3,35 +3,35 @@
 //Set money texture 
 void Money::setTexture(sf::Texture& texture)
 {
-	this->sprite.setTexture(texture);
+	sprite.setTexture(texture);
 }
 //Set money position 
 void Money::setPosition(sf::Vector2f position)
 {
-	this->sprite.setPosition(position);
+	sprite.setPosition(position);
 }
 //Set money value 
 void Money::setValue(float change)
 {
-	this->value += change;
+	value += change;
 }
 //Get money texture 
 int Money::getValue()
 {
-	return static_cast<int>(this->value);
+	return static_cast<int>(value);
 }
 //Set first upgrade cost
 void Money::setCost1(float change)
 {
-	this->cost1 = change;
+	cost1 = change;
 }
 //Set second upgrade cost
 void Money::setCost2(float change)
 {
-	this->cost2 = change;
+	cost2 = change;
 }
 //Set third upgrade cost
 void Money::setCost3(float change)
 {
-	this->cost3 = change;
+	cost3 = change;
 }

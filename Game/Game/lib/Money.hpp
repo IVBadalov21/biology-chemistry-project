@@ -14,13 +14,13 @@ public:
 
 	int upgrade1Level = 0;
 	int upgrade2Level = 0;
-	int upgrade3Level = 5;
+	int upgrade3Level = 1;
 	float moneyIncrease = 100;
 	float cost1 = 30;
 	float cost2 = 50;
 	float cost3 = 100;
 private:
-	float value = 100;
+	float value = 0;
 
 
 	sf::Sprite sprite;

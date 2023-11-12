@@ -3,12 +3,12 @@
 //Set texture of the garbage
 void Garbage::setTexture(sf::Texture& texture)
 {
-	this->sprite.setTexture(texture);
+	sprite.setTexture(texture);
 }
 //Set position of the garbage
 void Garbage::setPosition(sf::Vector2f position)
 {
-	this->sprite.setPosition(position);
+	sprite.setPosition(position);
 }
 //Set value of the garbage
 void Garbage::setValue(int value)
@@ -18,15 +18,15 @@ void Garbage::setValue(int value)
 //Draw the garbage
 void Garbage::draw(sf::RenderWindow& window)
 {
-	window.draw(this->sprite);
+	window.draw(sprite);
 }
 //Get garbage status
 bool Garbage::getStatus()
 {
-	return this->isCollected;
+	return isCollected;
 }
 //Set garbage status
 void Garbage::setStatus(bool status)
 {
-	this->isCollected = status;
+	isCollected = status;
 }
