@@ -32,8 +32,9 @@ private:
 	sf::Texture yellowTrashBinTexture;
 	sf::Texture greenTrashBinTexture;
 	sf::Texture backgroundTexture1;
-	//sf::Texture backgroundTexture2;
-	//sf::Texture backgroundTexture3;
+	sf::Texture backgroundTexture2;
+	sf::Texture backgroundTexture3;
+	sf::Texture backgroundTexture4;
 	sf::Texture glassTexture;
 	sf::Texture cardboardTexture;
 	sf::Texture plasticTexture;

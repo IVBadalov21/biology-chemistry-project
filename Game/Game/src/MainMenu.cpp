@@ -24,9 +24,7 @@ void MainMenu::draw(sf::RenderWindow& window)
 	window.draw(this->mainMenuBackgroundSprite);
 	window.draw(this->startButton);
 	window.draw(this->quitButton);
-	window.draw(this->startText);
-	window.draw(this->quitText);
-
+	
 	window.display();
 }
 //Handling button interactions

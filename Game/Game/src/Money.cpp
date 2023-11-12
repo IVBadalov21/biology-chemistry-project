@@ -24,17 +24,14 @@ int Money::getValue()
 void Money::setCost1(float change)
 {
 	this->cost1 = change;
-	upgrade1Level++;
 }
 //Set second upgrade cost
 void Money::setCost2(float change)
 {
 	this->cost2 = change;
-	upgrade2Level++;
 }
 //Set third upgrade cost
 void Money::setCost3(float change)
 {
 	this->cost3 = change;
-	upgrade3Level++;
 }
