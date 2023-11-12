@@ -43,6 +43,9 @@ private:
 	sf::Texture buttonTwoTexture;
 	sf::Texture buttonThreeTexture;
 
+	sf::Texture startTexture;
+	sf::Texture quitTexture;
+
 	sf::Font font;
 	sf::Text cooldownText;
 	sf::Text moneyText;

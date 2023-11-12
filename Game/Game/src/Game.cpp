@@ -13,6 +13,8 @@ Game::Game()
     this->buttonTwoTexture.loadFromFile("../Assets/two_button.png");
     this->buttonThreeTexture.loadFromFile("../Assets/three_button.png");
     this->moneyTexture.loadFromFile("../Assets/coins.png");
+    this->startTexture.loadFromFile("../Assets/start_button.png");
+    this->quitTexture.loadFromFile("../Assets/exiting_button.png");
     this->mainMenuTexture.loadFromFile("../Assets/cloud_back.png");
     this->blueTrashBinTexture.loadFromFile("../Assets/sin_kosh.png");
     this->yellowTrashBinTexture.loadFromFile("../Assets/jult_kosh.png");
@@ -44,7 +46,7 @@ Game::Game()
     };
     //Set the texture of the main menu
     this->mainMenu.setTexture(this->mainMenuTexture);
-    this->mainMenu.setButtons();
+    this->mainMenu.setButtons(startTexture, quitTexture);
     //Set the cooldown text
     this->cooldownText.setFont(this->font);
     this->cooldownText.setFillColor(sf::Color::White);
