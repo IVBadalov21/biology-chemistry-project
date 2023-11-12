@@ -3,6 +3,20 @@
 <br>
 <h1>📄 Description </h1>
   Kroasancheta is our team made up of 4 members. Our goal is to make a game that teaches children about ecology and the importance of it. 
+
+<p>Installing<p>
+<h1> Installation </h1>
+ 
+<p>1. Clone the repo</p>
+ 
+```
+https://github.com/IVBadalov21/biology-chemistry-project
+```
+<p>2. Open the .sln file</p>
+<p>3. Follow the instructions on the image</p>
+<a> <img style = "width:70%;" src="https://www.sfml-dev.org/tutorials/2.6/images/start-vc-paths.png"/> </a>
+<p>4. Run the project!</p>
+
 <h1>🧑‍🤝‍🧑 Our Team </h1>
 <p>
 
@@ -33,7 +47,7 @@
 
 <h1>📋 Documents</h1>
 <p>
-<h2> <a href ="SOON" >📜 Documentation</h2>
+<h2> <a href ="/Documentation/Documentation_kroasancheta.pptx" >📜 Documentation</h2>
 <h2> <a href ="/Documentation/QA_kroasancheta.xlsx">🔍 QA Tests</h2>
-<h2> <a href ="/Documentation/presentation.pptx" >📰 Presentation</h2>
+<h2> <a href ="/Documentation/Presentation_kroasancheta.pptx" >📰 Presentation</h2>
 </p>
