@@ -14,7 +14,7 @@ public:
 
 	int upgrade1Level = 0;
 	int upgrade2Level = 0;
-	int upgrade3Level = 1;
+	int upgrade3Level = 5;
 	float moneyIncrease = 100;
 	float cost1 = 30;
 	float cost2 = 50;

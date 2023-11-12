@@ -19,6 +19,7 @@ public:
 	void upgrade2();
 	void upgrade3();
 	void handleText();
+	void displayFinishWindow();
 
 private:
 
@@ -43,9 +44,11 @@ private:
 	sf::Texture buttonOneTexture;
 	sf::Texture buttonTwoTexture;
 	sf::Texture buttonThreeTexture;
-
 	sf::Texture startTexture;
 	sf::Texture quitTexture;
+	sf::Texture finishScreenTexture;
+
+	sf::Sprite finishScreen;
 
 	sf::Font font;
 	sf::Text cooldownText;
@@ -53,6 +56,8 @@ private:
 	sf::Text upgrade1Text;
 	sf::Text upgrade2Text;
 	sf::Text upgrade3Text;
+	sf::Text finishScreenText1;
+	sf::Text finishScreenText2;
 
 	Trash blueTrashBin;
 	Trash yellowTrashBin;
@@ -72,4 +77,5 @@ private:
 	bool garbageShouldDraw;
 	bool shouldMainMenuDisplay = true;
 	bool shouldWindowClose = false;
+	bool shouldFinishScreenDisplay = false;
 };

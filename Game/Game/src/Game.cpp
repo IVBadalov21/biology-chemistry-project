@@ -26,6 +26,7 @@ Game::Game()
 	this->backgroundTexture2.loadFromFile("../Assets/background_cloud.png");
 	this->backgroundTexture3.loadFromFile("../Assets/background_three.png");
 	this->backgroundTexture4.loadFromFile("../Assets/background_flowers.png");
+	this->finishScreenTexture.loadFromFile("../Assets/cloud_back.png");
 	this->font.loadFromFile("../Assets/Agbalumo-Regular.ttf");
 
 	this->trashBinTextures = {
@@ -122,6 +123,18 @@ Game::Game()
 	this->upgrade3Text.setFillColor(sf::Color::White);
 	this->upgrade3Text.setCharacterSize(32);
 	this->upgrade3Text.setPosition(sf::Vector2f(890, 400));
+	//Set first text of finish screen
+	this->finishScreenText1.setFont(this->font);
+	this->finishScreenText1.setFillColor(sf::Color::White);
+	this->finishScreenText1.setCharacterSize(60);
+	this->finishScreenText1.setPosition(sf::Vector2f(120, 400));
+	this->finishScreenText1.setString("Congratilations, you finished the game");
+	//Set second text of finish screen
+	this->finishScreenText2.setFont(this->font);
+	this->finishScreenText2.setFillColor(sf::Color::White);
+	this->finishScreenText2.setCharacterSize(60);
+	this->finishScreenText2.setPosition(sf::Vector2f(300, 600));
+	this->finishScreenText2.setString("Press Esc to close the game");
 	//Set blue trash bin texture
 	this->blueTrashBin.setTexture(this->trashBinTextures[1]);
 	this->blueTrashBin.setPosition(sf::Vector2f(340, 480));
@@ -137,6 +150,8 @@ Game::Game()
 	//Set background texture
 	this->background.setTexture(this->backgroundTextures[1]);
 	this->background.setSize();
+
+	this->finishScreen.setTexture(finishScreenTexture);
 	//Spawn initial garbage
 	this->garbageShouldDraw = true;
 	this->garbage.setValue(getRandomGarbage());
@@ -207,9 +222,16 @@ void Game::update()
 		}
 		else
 		{
-			handleText();
-			displayWindow();
-			garbageLogic();
+			if (shouldFinishScreenDisplay)
+			{
+				displayFinishWindow();
+			}
+			else
+			{
+				handleText();
+				displayWindow();
+				garbageLogic();
+			}
 		}
 
 	}
@@ -323,7 +345,14 @@ void Game::processKeyPressed()
 	}
 	if (this->event.key.code == sf::Keyboard::Escape)
 	{
-		this->shouldMainMenuDisplay = true;
+		if (shouldFinishScreenDisplay)
+		{
+			shouldWindowClose = true;
+		}
+		else
+		{
+			this->shouldMainMenuDisplay = true;
+		}
 	}
 }
 //Handling of the first upgrade
@@ -354,6 +383,8 @@ void Game::upgrade3()
 		this->background.setTexture(backgroundTextures[3]);
 	if (this->money.upgrade3Level == 4)
 		this->background.setTexture(backgroundTextures[4]);
+	if (money.upgrade3Level > 4)
+		shouldFinishScreenDisplay = true;
 }
 //Handling of text updates
 void Game::handleText()
@@ -365,4 +396,15 @@ void Game::handleText()
 	this->upgrade1Text.setString("Upgrade income:         " + std::to_string((int)this->money.cost1));
 	this->upgrade2Text.setString("Reduce cooldown:      " + std::to_string((int)this->money.cost2));
 	this->upgrade3Text.setString("Buy next stage:           " + std::to_string((int)this->money.cost3));
+}
+
+void Game::displayFinishWindow()
+{
+	window.clear();
+
+	window.draw(finishScreen);
+	window.draw(finishScreenText1);
+	window.draw(finishScreenText2);
+
+	window.display();
 }
