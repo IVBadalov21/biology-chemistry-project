@@ -47,7 +47,7 @@ https://github.com/IVBadalov21/biology-chemistry-project
 
 <h1>📋 Documents</h1>
 <p>
-<h2> <a href ="/Documentation/Documentation_kroasancheta.pptx" >📜 Documentation</h2>
+<h2> <a href ="/Documentation/Documentation_kroasancheta.docx" >📜 Documentation</h2>
 <h2> <a href ="/Documentation/QA_kroasancheta.xlsx">🔍 QA Tests</h2>
 <h2> <a href ="/Documentation/Presentation_kroasancheta.pptx" >📰 Presentation</h2>
 </p>
